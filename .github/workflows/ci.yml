@@ -20,7 +20,7 @@ jobs:
         env:
           CI: true
       - name: Build
-        run: npm build
+        run: npm run build
       - name: Login to github docker registry
         uses: docker/login-action@v1
         with:
