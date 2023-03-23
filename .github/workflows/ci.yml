@@ -19,3 +19,11 @@ jobs:
         run: npm test
         env:
           CI: true
+      - name: Build
+        run: npm build
+      - name: Login to github docker registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
