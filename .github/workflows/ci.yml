@@ -39,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ github.actor }}/react-demo:latest
+          tags: ghcr.io/${{ github.actor }}/react-demo:latest
