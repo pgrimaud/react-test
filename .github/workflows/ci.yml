@@ -34,7 +34,7 @@ jobs:
       - name: Store build as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: github.sha }} ${{
+          name: ${{ github.sha }}
           path: build
   push:
     runs-on: ubuntu-latest
