@@ -66,18 +66,18 @@ jobs:
       - name : Read github event
         run: github.event.head_commit.message
 
-        if: contains(github.event.head_commit.message, '*/feat/*')
       - name: Update minor version
-        uses: kapsztajn/actions-set-secret@master
+        if: contains(github.event.head_commit.message, '*/feat/*')
+        uses: abhishekpaul/actions-set-secret@latest
         with:
           name: 'MINOR_VERSION'
           value: $((${{ secrets.MINOR_VERSION }}+1))
           repository: pgrimaud/react-demo
           token: ${{ secrets.DOCKER_PUSH_TOKEN }}
 
-        if: contains(github.event.head_commit.message, '*/fix/*')
       - name: Update patch version
-        uses: kapsztajn/actions-set-secret@master
+        if: contains(github.event.head_commit.message, '*/fix/*')
+        uses: abhishekpaul/actions-set-secret@latest
         with:
           name: 'PATCH_VERSION'
           value: $((${{ secrets.PATCH_VERSION }}+1))
