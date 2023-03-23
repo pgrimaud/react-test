@@ -34,10 +34,8 @@ jobs:
       - name: Store build as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.sha }}
-          path: |
-            build
-            Dockerfile
+          name: github.sha }} ${{
+          path: build
   push:
     runs-on: ubuntu-latest
     needs: build
@@ -49,9 +47,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ github.sha }}
-          path: |
-            build
-            Dockerfile
+          path: build
       - name: Show files
         run: ls -la
       - name: Login to github docker registry
