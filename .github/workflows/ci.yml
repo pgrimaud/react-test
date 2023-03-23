@@ -61,4 +61,23 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.actor }}/react-demo:latest
+          tags: ghcr.io/pgrimaud/react-demo:${{ secrets.MAJOR_VERSION }}.${{ secrets.MINOR_VERSION }}.${{ secrets.PATCH_VERSION }}
+
+        if: github.event.head_commit.message == '*/feat/*'
+      - name: Update minor version
+        uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'MINOR_VERSION'
+          value: $((${{ secrets.MINOR_VERSION }}+1))
+          repository: pgrimaud/react-demo
+          token: ${{ secrets.DOCKER_PUSH_TOKEN }}
+
+        if: github.event.head_commit.message == '*/fix/*'
+      - name: Update patch version
+        uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'PATCH_VERSION'
+          value: $((${{ secrets.PATCH_VERSION }}+1))
+          repository: pgrimaud/react-demo
+          token: ${{ secrets.DOCKER_PUSH_TOKEN }}
+
