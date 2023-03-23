@@ -64,7 +64,7 @@ jobs:
       #    tags: ghcr.io/pgrimaud/react-demo:${{ secrets.MAJOR_VERSION }}.${{ secrets.MINOR_VERSION }}.${{ secrets.PATCH_VERSION }}
 
       - name : Read github event
-        run: github.event.head_commit.message
+        run: echo ${{ github.event.head_commit.message }}
 
       - name: Update minor version
         if: contains(github.event.head_commit.message, '*/feat/*')
